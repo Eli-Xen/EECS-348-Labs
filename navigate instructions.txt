@@ -1,0 +1,2 @@
+hello! this is the repo to keep my eecs 348 labs. 
+please navigate the branches to each lab, and then look at the commit message to see what lab task it is
