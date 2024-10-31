@@ -135,7 +135,17 @@ void get_diagonal_sum(const Matrix& matrix) {
 
 void swap_matrix_row(Matrix& matrix, int row1, int row2) {
     // TODO: Swap the rows 'row1' and 'row2' in the matrix
-    //    Handle invalid row indices
+    //    Handle invalid row indices]
+    if (row1<0 || row1>matrix.matrix_size || row2<0 || matrix.matrix_size)
+    {cout << "invalid row indecies, please make another call to swap function with valid indecies" << endl;}
+    // Matrix swap(matrix.matrix_size); //initilizes new Matrix object to store result and return 
+    for (int j=0; j<matrix.matrix_size; j++) //takes each column and swaps it between row1 and row2
+    {
+        int temp=matrix.matrix_data[row1][j]; 
+        matrix.matrix_data[row1][j]=matrix.matrix_data[row2][j]; 
+        matrix.matrix_data[row2][j]=temp; 
+    }
+    // return swap; //shouldnt return anything since we are changing the original matrix 
 }
 
 int main(int argc, char* argv[]) {
@@ -165,8 +175,9 @@ int main(int argc, char* argv[]) {
     // cout << "get matrix diagonal sum" << endl;
     // get_diagonal_sum(matrix_1);
 
-    // cout << "swap matrix rows" << endl;
-    // swap_matrix_row(matrix_1, 0, 1);
+    cout << "swap matrix_1 rows" << endl;
+    swap_matrix_row(matrix_1, 0, 1);
+    print_matrix(matrix_1);
 
     return 0;
 }
