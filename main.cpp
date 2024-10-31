@@ -130,13 +130,34 @@ Matrix operator*(const Matrix& matrix_1, const Matrix& matrix_2)
 }
 
 void get_diagonal_sum(const Matrix& matrix) {
-    // TODO: Calculate and print the sum of the diagonal elements
+    // TODO: Calculate and print the sum of the diagonal elements 
+    int diag1=0, diag2=0; 
+    for (int i=0; i<matrix.matrix_size; i++)
+    {
+        for (int j=0; j<matrix.matrix_size; j++)
+        {
+            if (i==j)
+            {diag1+=matrix.matrix_data[i][j];}
+            
+        }
+    }
+    int counter=matrix.matrix_size-1; 
+    for (int i=0; i<matrix.matrix_size; i++)
+    {
+        for (int j=0; j<matrix.matrix_size; j++)
+        {
+            if (j==counter)
+            {diag2+=matrix.matrix_data[i][j]; counter--;}
+        }
+    }
+    cout << "sum of main diagonal: " << diag1 << endl; 
+    cout << "sum of seconday diagonal: " << diag2 << endl;
 }
 
 void swap_matrix_row(Matrix& matrix, int row1, int row2) {
     // TODO: Swap the rows 'row1' and 'row2' in the matrix
     //    Handle invalid row indices]
-    if (row1<0 || row1>matrix.matrix_size || row2<0 || matrix.matrix_size)
+    if (row1<0 || row1>matrix.matrix_size || row2<0 || row2>matrix.matrix_size)
     {cout << "invalid row indecies, please make another call to swap function with valid indecies" << endl;}
     // Matrix swap(matrix.matrix_size); //initilizes new Matrix object to store result and return 
     for (int j=0; j<matrix.matrix_size; j++) //takes each column and swaps it between row1 and row2
@@ -164,6 +185,7 @@ int main(int argc, char* argv[]) {
     cout << "+ operator overload result:" << endl;
     print_matrix(add_result_2);
 
+    cout << endl; 
     // cout << "multiply_matrices result:" << endl;
     Matrix multiply_result_1 = multiply_matrices(matrix_1, matrix_2);
     Matrix multiply_result_2 = matrix_1 * matrix_2;
@@ -172,10 +194,12 @@ int main(int argc, char* argv[]) {
     cout << "* operator overload result:" << endl;
     print_matrix(multiply_result_2);
 
-    // cout << "get matrix diagonal sum" << endl;
-    // get_diagonal_sum(matrix_1);
+    cout << endl; 
+    // cout << "get matrix diagonal sum: " << endl;
+    get_diagonal_sum(matrix_1);
 
-    cout << "swap matrix_1 rows" << endl;
+    cout << endl; 
+    cout << "swap matrix_1 rows: " << endl;
     swap_matrix_row(matrix_1, 0, 1);
     print_matrix(matrix_1);
 
